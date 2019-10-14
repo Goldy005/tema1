@@ -1,0 +1,12 @@
+<html>
+    <head>
+        <title>Formulario de login</title>
+    </head>
+    <body>
+        <form action="session.php?method=auth" method="post">
+            <label for="nombre">Nombre</label>
+            <input type="text" name="nombre" value="<?php echo $nombre ?>"/>
+            <input type="submit"/>
+        </form>
+    </body>
+</html>

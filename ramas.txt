@@ -1,0 +1,14 @@
+1.Crear la rama.
+     -opción 1:
+     git branch trabajo //Crea
+     git checkout trabajo //salta de rama
+     -opción 2:
+     git checkout -b trabajo //crea y salta en uno
+2.Comprobar rama:
+    gir branch
+3.Realizar trabajo:
+    -codificar
+    -realizar uno o más commits
+4.Fundir con rama original (master por ejemplo).
+    git checkout master //saltar a rama original
+    git merge trbajo //fundir con trabajo

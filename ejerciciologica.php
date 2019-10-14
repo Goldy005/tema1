@@ -8,6 +8,6 @@ if(isSet($_REQUEST['lista'])){
 
 if(isSet($_REQUEST['nuevo'])){
     $nuevo = $_REQUEST['nuevo'];
-    $lista[] =$nuevo;
+    $lista[] = $nuevo;
 }
 require "ejercicio7vista.php";
