@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="loteria.css">
+    <title>Document</title>
+</head>
+<body>
+    <table>
+        <tr>
+            <?php
+                for($i=1;$i<=49;$i++){
+                    if($_SESSION['apuesta'][$i] == $i){
+                        echo "<td><a class=\"selected\" href=\"?method=toggle&number=$i\">$i</a></td>";
+                    }else{
+                        echo "<td><a href=\"?method=toggle&number=$i\">$i</a></td>";
+                    }
+                    if($i % 7 == 0){
+                        echo "</tr><tr>";
+                    }   
+                }
+            ?>
+            </tr>
+    </table>
+
+    <?php 
+            if($_SESSION['numerosSelecionados'] > 1 && $_SESSION['numerosSelecionados'] < 6) {
+                echo "Apuesta incompleta, usted lleva $_SESSION[numerosSelecionados] número selecionados.";
+            }else if($_SESSION['numerosSelecionados'] == 6){
+                echo "Apuesta completa.";
+            }else if($_SESSION['numerosSelecionados'] >6){
+                echo "Apuesta múltiple completa, usted lleva $_SESSION[numerosSelecionados] número selecionados.";
+            }
+    ?>
+</body>
+</html>
