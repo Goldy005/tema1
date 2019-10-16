@@ -1,0 +1,34 @@
+<html>
+    <head>
+        <title>Calculadora</title>
+    </head>
+    <body>
+        <form action="calculadora.php?method=calcular" method="post">
+            <label for="Operador1">Operador1 </label>
+            <input type="text" name="opt1" value="<?php echo isset($_SESSION['opt1']) ? $_SESSION['opt1'] : ' ' ?>"/><br/>
+            
+            <label for="Operacion">Operación: </label>
+            <select name="opt">
+                <option value="suma">suma</option>
+                <option value="resta">resta</option>
+                <option value="multiplicacion">multiplicación</option>
+                <option value="division">división</option>
+            </select>
+            <br/>
+            <label for="Operador2">Operador2 </label>
+            <input type="text" name="opt2" value="<?php echo isset($_SESSION['opt2']) ? $_SESSION['opt2'] : ' ' ?>"/>
+            <br/>
+            <button type="submit">Calcular</button>
+            <?php echo "$_SESSION[message]";
+
+            if(!empty($_SESSION['historial'])){
+                echo "<ol>";
+                foreach($_SESSION['historial'] as $value){
+                    echo "<li>$value</li>";
+                }
+                echo "</ol>";
+            }
+            ?>
+        </form>
+    </body>
+</html>
