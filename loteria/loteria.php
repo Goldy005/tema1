@@ -24,6 +24,12 @@
             header('Location: /loteria/loteria.php?method=index');
         }
 
+        public function flush(){
+
+            array_push($_SESSION['apuestaAlmacen[]'],$_SESSION['apuesta']);
+            
+            header('Location: /loteria/loteria.php?method=index');
+
         }
         
 

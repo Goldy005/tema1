@@ -1,7 +1,16 @@
-a{
-    text-decoration: none;
+.unselected a:link{
+    color: red;
 }
-
 .selected a:visited {
+    color:black;
+}
+.unselected a:visited {
     color:red;
+}
+#loteria{
+    font-size:1.5em;
+    border: 1px solid black;
+}
+#loteria tr,td{
+    border: 1px solid black;
 }
