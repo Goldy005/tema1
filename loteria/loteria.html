@@ -1,3 +1,9 @@
+<!--
+    Nombre:Shajinder Singh
+    Curso: 2DAW DUAL
+    Proyecto:loteria
+-->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,6 +14,7 @@
     <title>Document</title>
 </head>
 <body>
+    <!--TABLA-->
     <table id="loteria">
         <tr>
             <?php
@@ -24,7 +31,8 @@
             ?>
             </tr>
     </table>
-
+    <br/>
+    <!--Muestra los números seleccionados.-->
     <?php 
             if($_SESSION['numerosSelecionados'] >= 1 && $_SESSION['numerosSelecionados'] < 6) {
                 echo "Apuesta incompleta, usted lleva $_SESSION[numerosSelecionados] número selecionados.";
@@ -34,8 +42,16 @@
                 echo "Apuesta múltiple completa, usted lleva $_SESSION[numerosSelecionados] número selecionados.";
             }
     ?>
-    <form action="?method=flush">
+    <br/>
+    <!--Guardar apuesta-->
+    <form action="?method=flush" method="post">
+        <br/>
         <button type="submit">Guardar Apuesta</button>
     </form>
+    <!--El mesage, de si se puede alamcenar la apuesta.-->
+    <?php
+        echo "<br/>";
+            echo "$_SESSION[message]";
+    ?>
 </body>
 </html>
