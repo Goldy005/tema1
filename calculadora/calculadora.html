@@ -19,15 +19,22 @@
             <input type="text" name="opt2" value="<?php echo isset($_SESSION['opt2']) ? $_SESSION['opt2'] : ' ' ?>"/>
             <br/>
             <button type="submit">Calcular</button>
-            <?php echo "$_SESSION[message]";
+            
+            <?php 
+            
+            echo "$_SESSION[message]";
+            echo "<br/>";
 
             if(!empty($_SESSION['historial'])){
-                echo "<ol>";
-                foreach($_SESSION['historial'] as $value){
+
+                echo "<ul>";
+                foreach($_SESSION['historial'] as $value ){
                     echo "<li>$value</li>";
                 }
-                echo "</ol>";
+                echo "</ul>";
+
             }
+
             ?>
         </form>
     </body>
