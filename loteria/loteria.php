@@ -13,10 +13,9 @@
         //constructor
         public function __construct(){
             session_start();
-            $_SESSION['apuestaAlmacen'] = array();
         }
 
-        //página princiapl
+        //página principal
         public function index(){
             require "loteria.html";
         }
@@ -26,6 +25,9 @@
             
             $numero = $_GET['number'];
 
+            if(!isset($_SESSION['apuestaAlmacen'])){
+                $_SESSION['apuestaAlmacen'] = array();
+            }
             
             //si están seleccionados los borra.
             if(isset($_SESSION['apuesta'][$numero])){
@@ -44,17 +46,38 @@
         public function flush(){
 
             //solo alamacena si están seleccionados 6 números
-            if(sizeof($_SESSION['apuesta']) == 6 ){
+            if(sizeof($_SESSION['apuesta']) >= 6 ){
 
                 array_push($_SESSION['apuestaAlmacen'],$_SESSION['apuesta']);
-                unset($_SESSION['apuesta']);
-                $_SESSION['message'] = "Apuesta almacenada correctamente";
+
+                if(sizeof($_SESSION['apuesta']) == 6 ){
+                    $numeroApuesta = 1;
+                    $_SESSION['message2'] = "Se ha realizado una apuesta.";
+                    unset($_SESSION['apuesta']);
+
+                }else if(sizeof($_SESSION['apuesta']) > 6){
+
+                    //función para calcular el factorial
+                    function fact($numero){
+                        $fact = 1;
+                        for($i=1;$i<=$numero;$i++){
+                            $fact = $fact*$i;
+                        }
+                        return $fact;
+                    }
+
+                    //calculamos apuesta 
+                    $numApt = sizeof($_SESSION['apuesta']);
+                    //N.Apuestas = n!/(m! * (n-m)!) = n! / (6! * (n-6)!)
+                    $n_apuestas = fact($numApt) / (fact(6) * (fact($numApt - 6 )));
+                    $_SESSION['message2'] = "Has realizado $n_apuestas número de apuestas";
+                    unset($_SESSION['apuesta']);
+                }
 
             }else{
-                $_SESSION['message'] = "Error la apuesta debe tener selecionados por lo mínimo 6 números.";
+                $_SESSION['message2'] = "Error la apuesta debe tener selecionados por lo mínimo 6 números.";
             }
 
-            
             header('Location: /loteria/loteria.php?method=index');
 
         }
