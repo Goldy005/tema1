@@ -7,23 +7,41 @@
 */
     class App
     {
+        const FOLDER_PATH = 'imagenes/';
+
         public function __construct(){
             session_start();
+            
         }
 
         public function index(){
+            // $folderPath = "imagenes/";
+            $files = glob(App::FOLDER_PATH . "*.{jpg,jpeg,gif,bmp,png}",GLOB_BRACE);
             require "galeria.html";
         }
 
         public function upload(){
-        
-        $target_dir = "uploads/";
-        $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
-        $uploadOk = 1;
-        $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 
-        //comprueba si imagen
+            $target_dir = App::FOLDER_PATH;
+            $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+            move_uploaded_file($_FILES["fileToUpload"]["tmp_name"],$target_file);
+
+            header('Location: /galeria/galeria.php?method=index');
+        }
+
+        public function show(){
+
+            $_SESSION['file'] = $_GET['file'];
+            require "imagen.html";
+        }
+
+        public function delete(){
             
+            $file = $_GET['file'];
+            $dirDelete = App:: FOLDER_PATH . $file;
+            unlink($file);
+            header('Location: /galeria/galeria.php?method=index');
+
         }
 
     }

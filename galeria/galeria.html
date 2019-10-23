@@ -4,10 +4,22 @@
     </head>
     <body>
         <!--función glob te filtra tipo -->
-        <form action="galeria/galeria.php?method=upload" method="post" enctype="multipart/from-data">
+        <table border="1">
+            <tr>
+                <?php foreach($files as $key => $file){?>
+                    
+                    <td>
+                        <a href="?method=show&file=<?php echo $file ?>">
+                            <img src="<?php echo $file?>" width="100"/>
+                        </a>
+                    </td>
+               <?php } ?>
+            </tr>
+        </table>
+        <form action="?method=upload" method="post" enctype="multipart/form-data">
             Select image to upload:
             <input type="file" name="fileToUpload" id="fileToUpload">
             <input type="submit" value="Upload Image" name="submit">
-        </form> 
+        </form>
     </body>
 </html>
