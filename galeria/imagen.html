@@ -1,10 +1,31 @@
+<!--
+
+    Nombre:Shajinder Singh
+    Curso: 2DAW DUAL
+    Proyecto:Galeria
+    Descripciom: Vista para imagen con el butón volver y borrar.
+
+-->
 <html>
-    <head></head>
+    <head>
+        <title>Imagen</title>
+    </head>
     <body>
+        <!--Imagen-->
         <div>
             <img src="<?php echo  $_SESSION['file'] ?>" width="800"/>
             <br/>
             <a href="http://tema1.com/galeria/galeria.php?method=delete&file=<?php echo $_SESSION['file']?>">Borrar</a>
+            <a href="http://tema1.com/galeria/galeria.php?method=index"?>Volver</a>
         </div>
+        <br/>
+        <!--El nombre de la imagen-->
+        <?php
+
+            $file = $_SESSION['file'];
+            $nombre = substr($file,9,strlen($file));
+            echo "Nombre del archivo: " . $nombre;
+            
+        ?>
     </body>
 </html>
